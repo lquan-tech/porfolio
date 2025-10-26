@@ -171,7 +171,7 @@ const Header: React.FC = () => {
             className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-500 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
           >
-            Alex Chen
+            Portfolio
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -261,7 +261,7 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Hi, I'm Alex Chen
+          Hi, I'm lquan
         </motion.h1>
 
         <motion.p
@@ -1422,7 +1422,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-lg font-bold mb-4">Alex Chen</h3>
+            <h3 className="text-lg font-bold mb-4">lquan</h3>
             <p className="text-gray-400">Senior Front-End Engineer & UI/UX Designer</p>
           </div>
 
@@ -1474,7 +1474,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>© 2025 Alex Chen. All rights reserved.</p>
+          <p>© 2025 lquan. All rights reserved.</p>
         </div>
       </div>
     </motion.footer>
