@@ -477,21 +477,7 @@ const roadmapData: RoadmapItem[] = [
     title: "First Production App",
     description: "Launched my first full-stack application with 10k+ users",
   },
-  {
-    year: "2022",
-    title: "Senior Engineer",
-    description: "Promoted to Senior Front-End Engineer at a tech startup",
-  },
-  {
-    year: "2023",
-    title: "Open Source Contributions",
-    description: "Contributed to major open-source projects and libraries",
-  },
-  {
-    year: "2024",
-    title: "UI/UX Architect",
-    description: "Leading design system and component architecture initiatives",
-  },
+ 
 ]
 
 const RoadmapSection: React.FC = () => {
@@ -555,7 +541,7 @@ const RoadmapSection: React.FC = () => {
 }
 
 // ============================================================================
-// PROJECTS SECTION (MARQUEE)
+// PROJECTS SECTION (MARQUEE - WITHOUT SCROLL BUTTONS)
 // ============================================================================
 
 interface Project {
@@ -659,34 +645,6 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
 const ProjectsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollX } = useScroll({ container: containerRef })
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-
-  const checkScroll = () => {
-    if (containerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current
-      setCanScrollLeft(scrollLeft > 0)
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
-    }
-  }
-
-  useEffect(() => {
-    checkScroll()
-    const container = containerRef.current
-    container?.addEventListener("scroll", checkScroll)
-    return () => container?.removeEventListener("scroll", checkScroll)
-  }, [])
-
-  const scroll = (direction: "left" | "right") => {
-    if (containerRef.current) {
-      const scrollAmount = 400
-      containerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      })
-    }
-  }
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -702,10 +660,10 @@ const ProjectsSection: React.FC = () => {
         </motion.h2>
 
         <div className="relative">
-          {/* Scroll Container */}
+          {/* Scroll Container - Horizontal scroll without buttons */}
           <motion.div
             ref={containerRef}
-            className="flex gap-6 overflow-x-auto pb-4 scroll-smooth"
+            className="flex gap-6 overflow-x-auto pb-4 scroll-smooth scrollbar-hide"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -716,34 +674,6 @@ const ProjectsSection: React.FC = () => {
               <ProjectCard key={project.id} project={project} />
             ))}
           </motion.div>
-
-          {/* Scroll Buttons */}
-          <AnimatePresence>
-            {canScrollLeft && (
-              <motion.button
-                onClick={() => scroll("left")}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700"
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 10 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <ChevronDown className="w-6 h-6 rotate-90" />
-              </motion.button>
-            )}
-            {canScrollRight && (
-              <motion.button
-                onClick={() => scroll("right")}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <ChevronDown className="w-6 h-6 -rotate-90" />
-              </motion.button>
-            )}
-          </AnimatePresence>
         </div>
       </div>
     </section>
@@ -1017,13 +947,13 @@ const LanyardStatus: React.FC = () => {
                 </div>
 
                 <motion.div
-                  animate={{ scale: [1, 1.05, 1] }}
+                  animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                  className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] flex items-center justify-center z-20"
+                  className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full border-[5px] flex items-center justify-center z-20"
                   style={{
                     backgroundColor: statusColors[data.discord_status],
                     borderColor: "hsl(var(--background))",
-                    boxShadow: `0 0 8px ${statusColors[data.discord_status]}80`,
+                    boxShadow: `0 0 15px ${statusColors[data.discord_status]}80`,
                   }}
                 />
               </motion.div>
@@ -1394,7 +1324,7 @@ const ContactSection: React.FC = () => {
             className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once:  true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">My Status</h3>
