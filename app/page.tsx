@@ -557,12 +557,12 @@ interface Project {
 const projectsData: Project[] = [
   {
     id: "1",
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with real-time inventory",
-    image: "/ecommerce-platform-concept.png",
-    tags: ["React", "Node.js", "PostgreSQL"],
+    title: "Reverse 1999 Discord RPC",
+    description: "Custom Discord Rich Presence for Reverse 1999",
+    image: "/reverse1999discordrpc.png",
+    tags: ["JavaScript"],
     liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/lquan-tech/Reverse1999-Discord-RPC",
   },
   {
     id: "2",
@@ -1410,7 +1410,7 @@ const Footer: React.FC = () => {
     </motion.footer>
   )
 }
-
+  
 // ============================================================================
 // MAIN APP COMPONENT
 // ============================================================================
